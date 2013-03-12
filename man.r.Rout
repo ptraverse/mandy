@@ -1,0 +1,56 @@
+
+R version 2.14.1 (2011-12-22)
+Copyright (C) 2011 The R Foundation for Statistical Computing
+ISBN 3-900051-07-0
+Platform: i686-pc-linux-gnu (32-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> ### Reproduced from http://tolstoy.newcastle.edu.au/R/help/05/10/13198.html
+> ### Written by Jarek Tuszynski, PhD.
+> 
+> library(fields) # for tim.colors
+Loading required package: spam
+Spam version 0.29-2 (2012-08-17) is loaded.
+Type 'help( Spam)' or 'demo( spam)' for a short introduction 
+and overview of this package.
+Help for individual functions is also obtained by adding the
+suffix '.spam' to the function name, e.g. 'help( chol.spam)'.
+
+Attaching package: ‘spam’
+
+The following object(s) are masked from ‘package:base’:
+
+    backsolve, forwardsolve
+
+> library(caTools) # for write.gif
+> m = 400 # grid size
+> C = complex( real=rep(seq(-1.8,0.6, length.out=m), each=m ),
++ imag=rep(seq(-1.2,1.2, length.out=m), m ) )
+> C = matrix(C,m,m)
+> 
+> 
+> Z = 0
+> X = array(0, c(m,m,60))
+> for (k in 1:60) {
++ Z = Z^2+C
++ X[,,k] = exp(-abs(Z))
++ }
+> image(X[,,k], col=tim.colors(256)) # show final image in
+> write.gif(X, "Mandelbrot2.gif", col=tim.colors(256), delay=10)
+Error: cannot allocate vector of size 36.6 Mb
+Execution halted
